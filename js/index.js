@@ -154,7 +154,7 @@ function showCarrito() {
 }
 
 function aleatorio() {
-    return Math.round(Math.random() * (4 - 1) + 1);
+    return Math.round(Math.random() * (2 - 1) + 1);
 }
 
 let cant = document.getElementById("cantCarrito")
