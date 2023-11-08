@@ -22,6 +22,8 @@ let catalogo = inicial
 
 let cards = document.getElementById("cards")
 
+let compra = ([{idJuego: "", cantidadJuego: ""}])
+let cJ = 0
 
 function showCard() {
     let i = 0
@@ -171,10 +173,26 @@ function cantidadCarrito(id) {
     let a = `cardCa${id}`
     if (document.getElementById(a)) {
         editarCarrito(id)
+        editarCompra(id)
     } else {
         agregarCarrito(id)
+        agregarCompra(id)
     }
     sumarCarrito(id)
+}
+
+function agregarCompra(id) {
+    compra[cJ] = ({idJuego: id, cantidadJuego: document.getElementById(`cantidadCard${id}`).value})
+    cJ++
+}
+
+function editarCompra(id) {
+    let i = 0
+    while(i < compra.length){
+        if(compra[i].idJuego == id)
+        compra[i].cantidadJuego = document.getElementById(`cantidadCard${id}`).value
+        i++
+    }
 }
 
 function editarCarrito(id) {
@@ -282,15 +300,35 @@ function valorInput(i, id) {
         cant.innerHTML = ca
         tot += parseInt(catalogo[i].precio, 10)
         total.innerHTML = `$${tot}`
+        let j = 0
+        while(j < compra.length){
+            if(compra[j].idJuego == id)
+            compra[j].cantidadJuego = document.getElementById(`cantidadCard${id}`).value
+            j++
+        }
+        
     } else {
         ca--
         cant.innerHTML = ca
         tot -= parseInt(catalogo[i].precio, 10)
         total.innerHTML = `$${tot}`
+        let j = 0
+        while(j < compra.length){
+            if(compra[j].idJuego == id)
+            compra[j].cantidadJuego = document.getElementById(`cantidadCard${id}`).value
+            j++
+        }
     }
 
     if (b == "0") {
         quitarCard(i, id)
+        let k = 0
+        while(k < compra.length){
+            if(compra[k].idJuego == id)
+            compra.splice(k, 1)
+            k++
+            cJ = compra.length
+        }
     }
 }
 
@@ -303,6 +341,13 @@ function quitarCard(i, id) {
     total.innerHTML = `$${tot}`
     ca -= parseInt(c)
     cant.innerHTML = ca
+    let k = 0
+        while(k < compra.length){
+            if(compra[k].idJuego == id)
+            compra.splice(k, 1)
+            k++
+            cJ = compra.length
+        }
 }
 
 let total = document.getElementById("total")
