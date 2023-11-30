@@ -67,6 +67,9 @@ function todosCard() {
             i++
         })
     }, 2000);
+    let miCheckBox = document.getElementById("checkbox");
+    if (miCheckBox.checked) {miCheckBox.checked = false;
+    }
 }
 
 
@@ -147,6 +150,10 @@ function accionCard(a) {
             i++
         }
     }, 2000);
+    let mCheckBox = document.getElementById("checkbox");
+    if (mCheckBox.checked) {
+        mCheckBox.checked = false;
+    }
 }
 
 let carrito = document.getElementById("carrito")
@@ -370,4 +377,3 @@ let cerrar = document.getElementById("close")
 function cerrarCarrito() {
     carrito.classList.toggle("showCarrito")
 }
-
